@@ -95,7 +95,18 @@ Navigation beacons in a remote star system have gone silent. The player follows 
 6. Build one approved stage at a time. After each stage, stop and give one short paragraph describing what was built and exact phone test steps: what to tap, what success looks like, and what failure looks like. Give the user a chance to test before moving on.
 7. If something fails, explain what is observed and what is being tried. Do not go quiet. If attempts repeat without progress, say so and explain options, including returning to the last working version.
 
-Earlier agreed saving preference: build, let the user test, revise, then put approved game changes into the repository. Saving this instruction file is explicitly requested. Do not treat approval of the build plan as approval to merge every later change. Explain any proposed change to this saving workflow and obtain agreement, especially if hosting a test version requires saving a separate review copy in GitHub first.
+Agreed saving and phone-testing workflow:
+- The user approved GitHub Pages as the free hosting service.
+- The user explicitly agreed that unfinished game code may be saved to a separate testing copy in GitHub before phone testing.
+- The persistent testing branch is named preview. GitHub Pages should publish this branch from its root folder.
+- Save stage changes to preview, let GitHub Pages update, verify publication, and give the user the actual playable link and exact phone test steps.
+- Revise the testing copy based on feedback. The testing link shows work in progress, including changes the user has not accepted yet.
+- Keep main as the accepted project. Open a pull request from preview to main when a stage is ready for acceptance. The user tests and approves before merging.
+- Do not merge game changes or automatically enable merging merely because a build plan was approved.
+- Preserve the preview branch after a merge because hosting and later testing depend on it.
+- After acceptance, confirm that the stage is saved in main and that its history can be used to recover an earlier version.
+- A public repository's GitHub Pages site is public; anyone with the link can play. No separate account is needed for the player.
+- Pages settings must be enabled by the user from their phone; do not claim the site is enabled or playable until verified.
 
 ## Starting stage proposal — not yet approved
 
@@ -113,6 +124,8 @@ Improve the stage breakdown as needed for a genuinely playable first stage, pres
 - No game code has been written or approved.
 - The original README is an early placeholder, not permission to build or copy an existing game.
 - Repository: https://github.com/FaisalKhalil495/retro-space-shooter-codex
-- This instruction file is the first proposed project update.
-- Saving workflow, free phone hosting, and the final stage plan still need the ordered walkthrough above.
+- The first AGENTS.md update was accepted through pull request #1 and is saved in main.
+- The first saving walkthrough is complete. The user has approved saving test versions on preview and using GitHub Pages.
+- Hosting setup is awaiting the user's phone settings step and verification.
+- The final stage plan still needs to be presented and approved. No game implementation is authorized yet.
 - Previous workspace clone attempts failed because its configured network proxy could not be reached. GitHub connector reads work. Recheck actual readiness when needed; do not assume the earlier failure or a service's reported readiness proves the current state.
