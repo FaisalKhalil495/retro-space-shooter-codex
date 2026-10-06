@@ -1,6 +1,6 @@
-import {Flight,CONFIG,direction,clamp} from './engine.js';
-import {Renderer} from './art.js';
-import {AudioFeedback} from './audio.js';
+import {Flight,CONFIG,direction,clamp} from './engine.js?v=layout2';
+import {Renderer} from './art.js?v=layout2';
+import {AudioFeedback} from './audio.js?v=layout2';
 
 const $=id=>document.getElementById(id);
 const app=$('app'),overlay=$('overlay'),zone=$('steer-zone'),joystick=$('joystick'),stick=$('stick'),fire=$('fire');
@@ -27,7 +27,7 @@ function panel({eyebrow,title,text,button,note,secondary=false}){
 }
 function sync(){
   if(lastScore!==flight.score){$('score').textContent=String(flight.score).padStart(6,'0');lastScore=flight.score;}
-  if(lastLives!==flight.lives){$('lives').textContent=Array.from({length:3},(_,i)=>i<flight.lives?'◆':'◇').join(' ');$('lives').setAttribute('aria-label',flight.lives+' lives');lastLives=flight.lives;}
+  if(lastLives!==flight.lives){$('lives').innerHTML=Array.from({length:3},(_,i)=>'<i class="life-ship'+(i<flight.lives?'':' lost')+'" aria-hidden="true"></i>').join('');$('lives').setAttribute('aria-label',flight.lives+' lives');lastLives=flight.lives;}
   const second=Math.ceil(CONFIG.duration-flight.time);
   if(lastSecond!==second){$('time').textContent=String(Math.floor(second/60)).padStart(2,'0')+':'+String(second%60).padStart(2,'0');lastSecond=second;}
   if(lastState===flight.state)return;
@@ -65,7 +65,7 @@ function resume(){
 function togglePause(){if(flight.state==='playing')pause();else if(flight.state==='paused')resume();}
 
 zone.addEventListener('pointerdown',e=>{
-  if(flight.state!=='playing'||movePointer!==null||(e.pointerType==='mouse'&&e.button!==0))return;
+  if(e.target.closest('button')||flight.state!=='playing'||movePointer!==null||(e.pointerType==='mouse'&&e.button!==0))return;
   e.preventDefault();movePointer=e.pointerId;zone.setPointerCapture(e.pointerId);
   const bounds=zone.getBoundingClientRect();origin={x:e.clientX,y:e.clientY};
   joystick.style.left=(e.clientX-bounds.left)+'px';joystick.style.top=(e.clientY-bounds.top)+'px';

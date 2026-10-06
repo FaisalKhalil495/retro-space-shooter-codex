@@ -1,4 +1,4 @@
-import {CONFIG} from './engine.js';
+import {CONFIG} from './engine.js?v=layout2';
 // Original hand-drawn pixel maps. Each letter is a colour, each dot is transparent.
 const colours={r:'#a96b58',R:'#c68b6d',d:'#584b48',s:'#748789',S:'#a5b6aa',a:'#d0af79',b:'#35464d',w:'#dccba6'};
 const scout=[
@@ -53,12 +53,12 @@ export class Renderer {
   constructor(canvas){
     this.ctx=canvas.getContext('2d',{alpha:false});this.ctx.imageSmoothingEnabled=false;
     const rand=seeded(640360);
-    this.stars=Array.from({length:85},()=>({x:rand()*640,y:rand()*360,z:1+Math.floor(rand()*3)}));
-    this.wrecks=Array.from({length:7},(_,i)=>({x:i*155+rand()*90,y:205+rand()*155,w:32+Math.floor(rand()*75),h:12+Math.floor(rand()*22)}));
+    this.stars=Array.from({length:85},()=>({x:rand()*640,y:rand()*CONFIG.height,z:1+Math.floor(rand()*3)}));
+    this.wrecks=Array.from({length:7},(_,i)=>({x:i*155+rand()*90,y:CONFIG.height*.57+rand()*CONFIG.height*.43,w:32+Math.floor(rand()*75),h:12+Math.floor(rand()*22)}));
   }
   background(time){
-    const c=this.ctx;c.fillStyle='#14202d';c.fillRect(0,0,640,360);
-    c.fillStyle='#192936';c.fillRect(0,82,640,186);
+    const c=this.ctx;c.fillStyle='#14202d';c.fillRect(0,0,640,CONFIG.height);
+    c.fillStyle='#192936';c.fillRect(0,82,640,CONFIG.height-174);
     c.fillStyle='#1d2f3b';c.fillRect(0,130,640,66);
     c.fillStyle='#20333d';c.fillRect(120,155,520,13);
     c.fillStyle='#25353c';c.beginPath();c.arc(539,100,76,0,Math.PI*2);c.fill();
@@ -81,9 +81,9 @@ export class Renderer {
       c.fillStyle='#80644f';c.fillRect(x+9,w.y+8,8,3);c.fillRect(x+w.w-14,w.y+8,4,3);
       c.fillStyle='#162530';c.fillRect(x+w.w*.4,w.y+9,w.w*.28,8);
     }
-    c.fillStyle='#10202b';c.fillRect(0,349,640,11);
+    c.fillStyle='#10202b';c.fillRect(0,CONFIG.height-11,640,11);
     const offset=(time*39)%120;
-    for(let i=-1;i<7;i++){const x=i*120-offset;c.fillStyle='#29353a';c.fillRect(x,340,78,9);c.fillStyle='#594c40';c.fillRect(x+18,337,39,3);}
+    for(let i=-1;i<7;i++){const x=i*120-offset;c.fillStyle='#29353a';c.fillRect(x,CONFIG.height-20,78,9);c.fillStyle='#594c40';c.fillRect(x+18,CONFIG.height-23,39,3);}
   }
   draw(flight,visualTime){
     const c=this.ctx;this.background(visualTime);

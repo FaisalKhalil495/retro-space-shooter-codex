@@ -1,5 +1,5 @@
 // The simulation is independent of the screen and touch controls.
-export const CONFIG = Object.freeze({width:640,height:360,duration:180,speed:210,fireInterval:.17,protection:1.8});
+export const CONFIG = Object.freeze({width:640,height:432,duration:180,speed:210,fireInterval:.17,protection:1.8});
 export function direction(dx,dy,deadzone=8){
   const length=Math.hypot(dx,dy);
   if(length<deadzone)return {x:0,y:0};
@@ -26,10 +26,10 @@ export class Flight {
     this.wave++;
     const formation=this.wave%4;
     const count=this.time<25?2:this.time<75?3:4;
-    const base=80+this.random()*180;
+    const base=80+this.random()*(CONFIG.height-180);
     for(let i=0;i<count;i++){
       const type=formation===3&&i===0?'gunner':formation===2?'drifter':'dart';
-      this.enemies.push({x:CONFIG.width+24+i*62,y:clamp(base+(i-(count-1)/2)*44,65,320),baseY:clamp(base+(i-(count-1)/2)*44,65,320),w:type==='gunner'?30:22,h:type==='gunner'?24:18,type,hp:type==='gunner'?3:1,age:0,speed:65+Math.min(this.time*.25,30)+(type==='dart'?15:0),shootIn:2.4+i*.35,flash:0});
+      this.enemies.push({x:CONFIG.width+24+i*62,y:clamp(base+(i-(count-1)/2)*44,65,CONFIG.height-44),baseY:clamp(base+(i-(count-1)/2)*44,65,CONFIG.height-44),w:type==='gunner'?30:22,h:type==='gunner'?24:18,type,hp:type==='gunner'?3:1,age:0,speed:65+Math.min(this.time*.25,30)+(type==='dart'?15:0),shootIn:2.4+i*.35,flash:0});
     }
     this.spawnIn=this.time<30?3.8:this.time<90?3.1:2.6;
   }

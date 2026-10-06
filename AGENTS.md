@@ -51,6 +51,10 @@ Exact weapon ammo counts, movement speeds, timing of post-hit protection, scorin
 - Keep controls and the game clear of the iPhone 16 Pro camera cutout in landscape.
 - Account for browser interruptions and test actual phone behaviour; do not claim device verification without evidence.
 
+## Agreed layout reference
+
+The user supplied a landscape screenshot and requested its layout. Use the composition as a reference only; preserve original artwork and controls. The central playfield fills nearly the available height, with plain dark side margins, a low-left resting direction pad, and a dusty-red Special button above/right of a larger amber Fire button. Score and ship-shaped life indicators sit inside the top of the playfield. Pause and sound sit in the left margin. Remove decorative outer header/footer/captions from the flight view. Keep the pad floating wherever the left thumb lands, large invisible touch targets, press feedback, and iPhone safe-area spacing. The taller field uses a 640 × 432 simulation without stretching ship sprites. Enemy waves cover the taller field.
+
 ## Agreed connected journey
 
 Navigation beacons in a remote star system have gone silent. The player follows the failure from an orbital scrapyard to a buried machine that has turned the system's defences against passing ships.
@@ -130,7 +134,7 @@ Only the current stage may be built. After each stage, stop for phone testing an
 - The first AGENTS.md update was accepted through pull request #1 and is saved in main.
 - The first saving walkthrough is complete. The user has approved saving test versions on preview and using GitHub Pages.
 - The user enabled GitHub Pages with preview and /(root). Repository metadata confirms Pages is enabled; its deployment workflow runs from preview.
-- Stage 1 (v0.1.0) is implemented and is being published to preview for phone testing. Main still contains accepted documentation only.
+- Stage 1 was published to preview; a v0.1.1 layout revision is being prepared from the user’s supplied reference. Main still contains accepted documentation only.
 - Eight simulation checks passed for steering, limits, firing, lives/protection/retry, pause, scoring, trial completion, and bounded repeatable waves. Automated browser checks were blocked by workspace network permissions and remain unverified; do not claim Android or Safari device verification.
 - Initial tuning: movement 210 game pixels/second; fire interval 0.17 seconds; protection 1.8 seconds; small enemies 100 points and gunners 150. These were explained as starting values for phone feedback, not final balance commitments.
 - The user must test Stage 1 before acceptance or work on Stage 2. Do not merge automatically.

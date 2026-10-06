@@ -2,7 +2,7 @@
 
 An original landscape space shooter for phone web browsers. Warm, muted pixel art; a floating eight-direction pad on the left; large Fire and Special controls on the right. The controls sit outside the action.
 
-## Current version: Stage 1 flight test (v0.1.0)
+## Current version: Stage 1 flight test (v0.1.1)
 
 - Original scout and scrolling orbital scrapyard.
 - Enemy formations, hold-to-fire shooting, three lives, score, and a three-minute trial.
@@ -10,7 +10,8 @@ An original landscape space shooter for phone web browsers. Warm, muted pixel ar
 - Start, pause/resume, retry, and original synthesized sound effects with a mute control.
 - Automatic pause on app interruptions and portrait rotation.
 - Android vibration where supported, plus visible button and sound feedback.
-- Landscape layout with iPhone safe-area spacing.
+- Nearly full-height central playfield, dark thumb margins, low-left floating pad, amber Fire and dusty-red Special; iPhone safe-area spacing.
+- Pause and sound controls in the upper left margin; score and ship-shaped lives inside the playfield.
 
 Special weapons, pickups, Scrapjaw, and saved level progress arrive in Stage 2. Music and the high-score table arrive later. The current version does not pretend to contain these features.
 
