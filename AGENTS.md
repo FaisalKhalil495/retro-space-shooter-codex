@@ -51,6 +51,10 @@ Exact weapon ammo counts, movement speeds, timing of post-hit protection, scorin
 - Keep controls and the game clear of the iPhone 16 Pro camera cutout in landscape.
 - Account for browser interruptions and test actual phone behaviour; do not claim device verification without evidence.
 
+## Agreed layout reference
+
+The user supplied a landscape screenshot and requested its layout. Use the composition as a reference only; preserve original artwork and controls. The central playfield fills nearly the available height, with plain dark side margins, a low-left resting direction pad, and a dusty-red Special button above/right of a larger amber Fire button. Score and ship-shaped life indicators sit inside the top of the playfield. Pause and sound sit in the left margin. Remove decorative outer header/footer/captions from the flight view. Keep the pad floating wherever the left thumb lands, large invisible touch targets, press feedback, and iPhone safe-area spacing. The taller field uses a 640 × 432 simulation without stretching ship sprites. Enemy waves cover the taller field.
+
 ## Agreed connected journey
 
 Navigation beacons in a remote star system have gone silent. The player follows the failure from an orbital scrapyard to a buried machine that has turned the system's defences against passing ships.
@@ -95,24 +99,43 @@ Navigation beacons in a remote star system have gone silent. The player follows 
 6. Build one approved stage at a time. After each stage, stop and give one short paragraph describing what was built and exact phone test steps: what to tap, what success looks like, and what failure looks like. Give the user a chance to test before moving on.
 7. If something fails, explain what is observed and what is being tried. Do not go quiet. If attempts repeat without progress, say so and explain options, including returning to the last working version.
 
-Earlier agreed saving preference: build, let the user test, revise, then put approved game changes into the repository. Saving this instruction file is explicitly requested. Do not treat approval of the build plan as approval to merge every later change. Explain any proposed change to this saving workflow and obtain agreement, especially if hosting a test version requires saving a separate review copy in GitHub first.
+Agreed saving and phone-testing workflow:
+- The user approved GitHub Pages as the free hosting service.
+- The user explicitly agreed that unfinished game code may be saved to a separate testing copy in GitHub before phone testing.
+- The persistent testing branch is named preview. GitHub Pages should publish this branch from its root folder.
+- Save stage changes to preview, let GitHub Pages update, verify publication, and give the user the actual playable link and exact phone test steps.
+- Revise the testing copy based on feedback. The testing link shows work in progress, including changes the user has not accepted yet.
+- Keep main as the accepted project. Open a pull request from preview to main when a stage is ready for acceptance. The user tests and approves before merging.
+- Do not merge game changes or automatically enable merging merely because a build plan was approved.
+- Preserve the preview branch after a merge because hosting and later testing depend on it.
+- After acceptance, confirm that the stage is saved in main and that its history can be used to recover an earlier version.
+- A public repository's GitHub Pages site is public; anyone with the link can play. No separate account is needed for the player.
+- Pages settings must be enabled by the user from their phone; do not claim the site is enabled or playable until verified.
 
-## Starting stage proposal — not yet approved
+## Approved stage plan
 
-The user's starting outline is:
-1. Ship, controls, basic enemies, lives, and score.
-2. One complete level with special weapons and the first boss.
-3. All eight levels and bosses.
-4. Title screen, pause, sound and music, high scores, and polish.
+The user explicitly approved this five-stage plan:
+1. **First playable version:** original scout, scrolling scrapyard, basic enemies, shooting, three lives, score, restart, full phone controls, cutout spacing, touch feedback, basic start/pause/sound controls.
+2. **Complete level one:** about three minutes of waves, extra-life pickups, bombs, rockets, laser, Scrapjaw, level completion, and saved progress.
+3. **Levels 2–4:** Amber Reach, Hollow Mesa, Cinder Coast; their scenery, enemies, bosses, and increasing difficulty.
+4. **Levels 5–8:** remaining settings and bosses, including The Foundry Heart.
+5. **Finish and polish:** finished title and menus, high-score table, original music, richer sound effects, final artwork/balance/control/performance improvements.
 
-Improve the stage breakdown as needed for a genuinely playable first stage, present it in plain English, and wait for user approval. Do not silently move ahead.
+Approved implementation approach: JavaScript and Canvas (the browser's built-in drawing surface), with separate touch-control panels. No game library or extra hosting service is currently needed.
+
+Only the current stage may be built. After each stage, stop for phone testing and approval. Stage 1 is a flight test, not the finished first level: special weapons, pickups, the first boss, and level-progress saving arrive in Stage 2. The visible Special button is inactive in Stage 1. Basic original synthesized sound effects are included now for touch feedback; music and the high-score table come later.
 
 ## Current project state
 
 - The interview and scope confirmation are complete enough for setup.
-- No game code has been written or approved.
+- The five-stage plan is approved. Stage 1 implementation is authorized; subsequent stages still require the stage-by-stage testing gate.
 - The original README is an early placeholder, not permission to build or copy an existing game.
 - Repository: https://github.com/FaisalKhalil495/retro-space-shooter-codex
-- This instruction file is the first proposed project update.
-- Saving workflow, free phone hosting, and the final stage plan still need the ordered walkthrough above.
+- The first AGENTS.md update was accepted through pull request #1 and is saved in main.
+- The first saving walkthrough is complete. The user has approved saving test versions on preview and using GitHub Pages.
+- The user enabled GitHub Pages with preview and /(root). Repository metadata confirms Pages is enabled; its deployment workflow runs from preview.
+- Stage 1 was published to preview; a v0.1.1 layout revision is being prepared from the user’s supplied reference. Main still contains accepted documentation only.
+- Eight simulation checks passed for steering, limits, firing, lives/protection/retry, pause, scoring, trial completion, and bounded repeatable waves. Automated browser checks were blocked by workspace network permissions and remain unverified; do not claim Android or Safari device verification.
+- Initial tuning: movement 210 game pixels/second; fire interval 0.17 seconds; protection 1.8 seconds; small enemies 100 points and gunners 150. These were explained as starting values for phone feedback, not final balance commitments.
+- The user must test Stage 1 before acceptance or work on Stage 2. Do not merge automatically.
 - Previous workspace clone attempts failed because its configured network proxy could not be reached. GitHub connector reads work. Recheck actual readiness when needed; do not assume the earlier failure or a service's reported readiness proves the current state.
